@@ -1,0 +1,274 @@
+/* --- G.A.B.A.H DESIGN SYSTEM: PRESET & VARIABLES --- */
+:root {
+    --tkp-green: #00AA5B;
+    --tkp-dark-green: #008a4a;
+    --tkp-light: #ebffef;
+    --glass-white: rgba(255, 255, 255, 0.7);
+    --glass-dark: rgba(30, 41, 59, 0.5);
+    --slate-800: #1e293b;
+    --slate-400: #94a3b8;
+    --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+}
+
+/* --- BASE BODY & ANIMATED BACKGROUND --- */
+body { 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    background: radial-gradient(at 0% 0%, rgba(0, 170, 91, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(235, 255, 239, 1) 0px, transparent 50%),
+                #f8fafc;
+    background-attachment: fixed;
+    color: var(--slate-800);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0;
+}
+
+/* --- HEADER & NAVIGATION --- */
+.header-sticky, .search-container, .bg-white.border-b.px-4.py-2 {
+    transition: all 0.3s ease;
+}
+
+.search-bar {
+    background-color: #f0f3f7;
+    transition: all 0.3s ease;
+}
+
+/* --- FILTER PILLS (Glass Style) --- */
+.filter-pill {
+    padding: 8px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--slate-400);
+    background: var(--glass-white);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.filter-pill.active {
+    background: var(--tkp-green);
+    color: white;
+    border-color: var(--tkp-green);
+    box-shadow: 0 4px 12px rgba(0, 170, 91, 0.25);
+}
+
+/* --- ENHANCED PRODUCT CARD (Floating Glass) --- */
+.product-card {
+    background: var(--glass-white) !important;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 170, 91, 0.15);
+    border-color: var(--tkp-green);
+}
+
+/* --- BADGES & BUTTONS --- */
+.badge-wilayah {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--gold-gradient);
+    color: #451a03;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+}
+
+.btn-add-cart {
+    background: linear-gradient(135deg, var(--tkp-green) 0%, var(--tkp-dark-green) 100%);
+    color: white;
+    font-weight: 800;
+    font-size: 11px;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-add-cart::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255,255,255,0.2);
+    transform: rotate(45deg);
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.btn-add-cart:hover::after {
+    opacity: 1;
+    left: 100%;
+}
+
+/* =============================================
+   SINKRONISASI DARK MODE TOTAL 
+   ============================================= */
+
+body.theme-dark {
+    background: radial-gradient(at 0% 0%, rgba(5, 150, 105, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(15, 23, 42, 1) 0px, transparent 50%),
+                #020617 !important;
+    color: #f1f5f9 !important;
+}
+
+/* Bagian Atas & Header */
+body.theme-dark .bg-white.border-b.px-4.py-2,
+body.theme-dark .header-sticky,
+body.theme-dark .search-container {
+    background-color: rgba(30, 41, 59, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px);
+}
+
+body.theme-dark #userName, body.theme-dark #headerName, body.theme-dark #headerAddress {
+    color: #f8fafc !important;
+}
+
+body.theme-dark .search-bar {
+    background-color: #0f172a !important;
+}
+
+body.theme-dark #searchInput { color: white !important; }
+
+/* Card & Panel Dark Mode */
+body.theme-dark .product-card {
+    background: var(--glass-dark) !important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+body.theme-dark .product-card h4 { color: #f1f5f9 !important; }
+
+body.theme-dark #distroModal .bg-white,
+body.theme-dark #inventoryPanel {
+    background-color: #1e293b !important;
+    color: #f1f5f9 !important;
+}
+
+/* Tombol Mode Gelap Khusus */
+body.theme-dark .filter-pill:not(.active) {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: #4ade80 !important;
+}
+
+/* --- UTILITY & ANIMATION --- */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-popup { animation: fadeInUp 0.4s ease-out forwards; }
+
+@media (max-width: 768px) {
+    .filter-pill { padding: 6px 12px; border-radius: 10px; }
+    .search-bar { padding: 8px 12px; }
+}
+
+
+/* Warna Default (Terang) */
+#shopIndicator {
+    transition: all 0.3s ease;
+}
+
+/* Penyesuaian saat Dark Mode Aktif */
+body.theme-dark #shopIndicator.dark-shop-bg {
+    background-color: rgba(30, 41, 59, 0.8) !important; /* Gunakan glass-dark style */
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body.theme-dark .dark-shop-text {
+    color: #f1f5f9 !important;
+}
+
+/* Tombol Merah Tetap Merah di Dark Mode tapi disesuaikan */
+body.theme-dark .bg-red-50 {
+    background-color: rgba(239, 68, 68, 0.1) !important;
+    color: #f87171 !important;
+    border-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+
+
+/* GAYA KHUSUS MODAL DETAIL PRODUK */
+.swal2-popup.swal2-modal {
+    border-radius: 30px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Warna Terang: Gunakan Putih Bersih */
+body:not(.theme-dark) .swal2-popup {
+    background: #ffffff !important;
+}
+
+/* Warna Gelap: Gunakan Biru Malam yang Sangat Gelap (Beda dari Slate) */
+body.theme-dark .swal2-popup {
+    background: #0f172a !important; /* Midnight Blue */
+    border: 1px solid rgba(0, 170, 91, 0.2) !important;
+}
+
+/* Efek Input Focus */
+#qtyInput:focus {
+    box-shadow: 0 0 0 4px rgba(0, 170, 91, 0.15);
+    border-color: #00AA5B !important;
+}
+
+/* Custom Close Button */
+.swal2-close {
+    background: #f1f5f9 !important;
+    border-radius: 50% !important;
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 18px !important;
+    margin: 10px !important;
+    color: #ef4444 !important;
+}
+
+body.theme-dark .swal2-close {
+    background: #1e293b !important;
+}
+
+
+
+
+body { 
+        @apply bg-[#ffffff] text-slate-900 transition-colors duration-500; 
+    }
+    
+    body.theme-dark { 
+        @apply bg-[#050505] text-slate-100; 
+    }
+
+    /* Pastikan header mengikuti perubahan ini */
+    .header-container {
+        @apply bg-white border-slate-100 shadow-sm;
+    }
+    
+    .theme-dark .header-container {
+        @apply bg-[#0f172a] border-slate-800 shadow-none;
+    }

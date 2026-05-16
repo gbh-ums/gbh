@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G.A.B.A.H - Checkout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../peran.css">
+</head>
+<body class="bg-slate-50 p-4 md:p-8">
+    <div class="max-w-3xl mx-auto">
+        <div class="flex items-center gap-4 mb-8">
+            <button onclick="history.back()" class="p-3 bg-white rounded-2xl shadow-sm hover:bg-slate-50 transition-all">
+                <i class="fas fa-arrow-left text-slate-600"></i>
+            </button>
+            <div>
+                <h1 class="text-xl font-black italic text-blue-600 uppercase tracking-tighter">Checkout G.A.B.A.H</h1>
+                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Sistem Rantai Pasok Digital</p>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-[32px] border border-slate-100 mb-6 shadow-sm">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-[10px] font-black text-slate-400 uppercase italic">Tujuan Pengiriman</h3>
+            </div>
+            <div class="flex items-start gap-4">
+                <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600">
+                    <i class="fas fa-warehouse"></i>
+                </div>
+                <div>
+                    <p id="distName" class="font-bold text-slate-800 tracking-tight">-</p>
+                    <p id="distAddress" class="text-xs text-slate-500 leading-relaxed italic">Memuat lokasi...</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="checkoutGroupedItems" class="space-y-3 mb-8">
+            </div>
+
+        <div class="bg-white p-6 rounded-[32px] border-2 border-blue-50 mb-8 shadow-xl shadow-blue-900/5">
+            <div class="flex justify-between items-center">
+                <div>
+                    <p class="text-[10px] font-black text-slate-400 uppercase">Total Tagihan</p>
+                    <h2 id="totalFinal" class="text-2xl font-black text-blue-600">Rp 0</h2>
+                </div>
+                <button onclick="bukaModalQRIS()" class="px-8 py-4 bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all">
+                    Bayar Sekarang
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="qrisModal" class="fixed inset-0 bg-slate-900/90 backdrop-blur-md hidden z-50 flex items-center justify-center p-6">
+        <div class="bg-white w-full max-w-sm rounded-[40px] p-8 text-center">
+            <h2 class="font-black text-slate-800 mb-6 uppercase tracking-widest text-sm">Scan QRIS GABAH</h2>
+            <div class="p-4 bg-slate-50 rounded-3xl mb-6">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=GABAH_PAY" class="mx-auto rounded-xl">
+            </div>
+            <button onclick="selesaiBayar()" class="w-full py-4 bg-green-500 text-white rounded-2xl font-black mb-3 uppercase text-xs tracking-tighter">Konfirmasi Pembayaran</button>
+            <button onclick="tutupModal()" class="text-xs font-bold text-slate-400 uppercase">Batal</button>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="../peran.js"></script> <script src="checkout.js"></script> </body>
+</html>

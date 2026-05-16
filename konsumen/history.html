@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History Transaksi - G.A.B.A.H</title>
+    <script src="https://cdn.tailwindcss.com"></script> <meta name="referrer" content="no-referrer">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; }
+        .tab-active { border-bottom: 3px solid #00AA5B; color: #00AA5B; }
+        .card-history { background: white; border-radius: 1.5rem; border: 1px solid #e2e8f0; transition: all 0.3s; }
+        .card-history:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        <div class="flex items-center gap-4 mb-8">
+            <button onclick="location.href='konsumen.html'" class="p-3 bg-white rounded-2xl shadow-sm hover:bg-slate-50 transition-all">
+                <i class="fas fa-arrow-left text-slate-600"></i>
+            </button>
+            <div>
+                <h1 class="text-xl font-black italic text-[#00AA5B]">HISTORY TRANSAKSI</h1>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Pantau pesanan G.A.B.A.H Anda</p>
+            </div>
+        </div>
+
+        <div class="flex gap-8 border-b border-slate-200 mb-6">
+            <button onclick="switchTab('proses')" id="tabProses" class="pb-4 text-sm font-bold tab-active">Dalam Proses</button>
+            <button onclick="switchTab('selesai')" id="tabSelesai" class="pb-4 text-sm font-bold text-slate-400">Selesai</button>
+        </div>
+
+        <div id="historyList" class="space-y-4">
+            <div class="flex justify-center py-20">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00AA5B]"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    
+    <script src="history.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G.A.B.A.H - Update Produk</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        /* Fallback: Memastikan konten muncul jika script reveal tertunda */
+        .reveal { opacity: 1 !important; transform: translateY(0) !important; }
+    </style>
+</head>
+<body class="moving-bg min-h-screen flex flex-col overflow-x-hidden theme-dark">
+
+    <div class="theme-overlay"></div>
+    <div class="grain-overlay"></div>
+
+    <div class="relative z-10 p-4 md:p-10">
+        <nav class="max-w-4xl mx-auto mb-10 flex justify-between items-center">
+            <a href="../index.html" class="secondary-btn px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+            
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="w-10 h-10 rounded-full secondary-btn flex items-center justify-center">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+                <a href="../marketplace_konsumen/konsumen.html" class="bg-emerald-600 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg shadow-emerald-500/20">
+                    Marketplace <i class="fas fa-shopping-cart ml-1"></i>
+                </a>
+            </div>
+        </nav>
+
+        <header class="max-w-4xl mx-auto mb-12 reveal">
+            <div class="flex items-center gap-6">
+                <div class="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-500 text-3xl">
+                    <i class="fas fa-box-open"></i>
+                </div>
+                <div>
+                    <span class="badge px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest border">Katalog Terbaru</span>
+                    <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mt-2">Update Produk</h1>
+                    <p class="sub-text font-medium">Inovasi produk tani unggulan untuk ekosistem G.A.B.A.H.</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-4xl mx-auto space-y-8">
+            
+            <section class="secondary-btn p-8 rounded-[2.5rem] reveal">
+                <h2 class="text-xl font-black mb-4 text-emerald-500 uppercase">Pembaruan Musim Tanam 2026</h2>
+                <p class="sub-text leading-relaxed">
+                    Kami terus melakukan riset untuk menghadirkan sarana produksi yang lebih efisien. Berikut adalah beberapa pembaruan produk yang telah melewati uji coba laboratorium dan lapangan untuk memastikan hasil panen Anda tetap optimal.
+                </p>
+            </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="edu-card p-8 rounded-3xl border border-emerald-500/10 secondary-btn reveal">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-500">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <span class="text-[9px] font-black bg-emerald-500 text-white px-2 py-1 rounded">NEW FORMULA</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white uppercase italic mb-2">Pupuk Hayati G-Max v2.0</h3>
+                    <p class="sub-text text-sm leading-relaxed mb-4">
+                        Pembaruan mikroorganisme pengurai yang lebih cepat menyatu dengan tanah, khusus untuk lahan dengan tingkat keasaman tinggi.
+                    </p>
+                </div>
+
+                <div class="edu-card p-8 rounded-3xl border border-emerald-500/10 secondary-btn reveal">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-500">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <span class="text-[9px] font-black bg-blue-500 text-white px-2 py-1 rounded">UPGRADED</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white uppercase italic mb-2">Sensor Tanah IoT Pro</h3>
+                    <p class="sub-text text-sm leading-relaxed mb-4">
+                        Baterai tahan lebih lama (hingga 12 bulan) dengan akurasi pembacaan nitrogen yang ditingkatkan sebesar 15%.
+                    </p>
+                </div>
+
+            </div>
+
+            <section class="p-10 rounded-[3rem] bg-emerald-600/10 border border-emerald-500/20 reveal text-center">
+                <h3 class="text-2xl font-black text-white mb-2 uppercase italic tracking-tighter">Cek Ketersediaan Stok</h3>
+                <p class="text-sm sub-text mb-8">Seluruh produk di atas sudah dapat dipesan melalui portal marketplace konsumen kami.</p>
+                
+                <a href="../konsumen/konsumen.html" class="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-4 rounded-full font-black uppercase text-xs tracking-[0.2em] transition-all shadow-xl shadow-emerald-500/20 hover:scale-105 active:scale-95">
+                    Beli di Marketplace <i class="fas fa-external-link-alt"></i>
+                </a>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="../index.js"></script>
+</body>
+</html>

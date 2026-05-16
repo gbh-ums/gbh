@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G.A.B.A.H - Manajemen Cuaca</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        /* Memastikan konten muncul jika JS reveal tertunda */
+        .reveal { opacity: 1 !important; transform: translateY(0) !important; }
+    </style>
+</head>
+<body class="moving-bg min-h-screen flex flex-col overflow-x-hidden theme-dark">
+
+    <div class="theme-overlay"></div>
+    <div class="grain-overlay"></div>
+
+    <div class="relative z-10 p-4 md:p-10">
+        <nav class="max-w-4xl mx-auto mb-10 flex justify-between items-center">
+            <a href="../index.html" class="secondary-btn px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+            
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="w-10 h-10 rounded-full secondary-btn flex items-center justify-center">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+                <a href="../register/register.html" class="bg-emerald-600 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg shadow-emerald-500/20">
+                    Daftar
+                </a>
+            </div>
+        </nav>
+
+        <header class="max-w-4xl mx-auto mb-12 reveal">
+            <div class="flex items-center gap-6">
+                <div class="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-500 text-3xl">
+                    <i class="fas fa-cloud-sun-rain"></i>
+                </div>
+                <div>
+                    <span class="badge px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest border">Edukasi Publik</span>
+                    <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mt-2">Manajemen Cuaca</h1>
+                    <p class="sub-text font-medium">Strategi adaptasi iklim untuk jadwal tanam presisi 2026.</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-4xl mx-auto space-y-8">
+            
+            <section class="secondary-btn p-8 rounded-[2.5rem] reveal">
+                <h2 class="text-xl font-black mb-4 text-emerald-500 uppercase">Menghadapi Anomali Iklim</h2>
+                <p class="sub-text leading-relaxed">
+                    Perubahan pola cuaca menuntut petani untuk tidak lagi hanya mengandalkan kalender tradisional. G.A.B.A.H mengintegrasikan data satelit dengan observasi lokal untuk menentukan waktu persemaian yang paling aman dari risiko kekeringan maupun banjir mendadak.
+                </p>
+            </section>
+
+            <h2 class="text-2xl font-black uppercase tracking-tight text-center mb-4">Tips & Trik Cerdas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="edu-card p-8 rounded-3xl border border-emerald-500/10 secondary-btn reveal">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3 class="text-lg font-bold uppercase italic text-sm">Jadwal Fleksibel</h3>
+                    </div>
+                    <p class="sub-text text-sm leading-relaxed">
+                        Jangan terpaku pada tanggal. Jika curah hujan belum stabil di atas 50mm per dasarian, tunda persemaian untuk menghindari bibit stres.
+                    </p>
+                </div>
+
+                <div class="edu-card p-8 rounded-3xl border border-emerald-500/10 secondary-btn reveal">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
+                            <i class="fas fa-umbrella"></i>
+                        </div>
+                        <h3 class="text-lg font-bold uppercase italic text-sm">Drainase Aktif</h3>
+                    </div>
+                    <p class="sub-text text-sm leading-relaxed">
+                        Pastikan saluran pembuangan air (drainase) bersih sebelum puncak musim hujan untuk mencegah genangan yang memicu pembusukan akar.
+                    </p>
+                </div>
+
+                <div class="edu-card p-8 rounded-3xl border border-emerald-500/10 secondary-btn reveal">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
+                            <i class="fas fa-temperature-high"></i>
+                        </div>
+                        <h3 class="text-lg font-bold uppercase italic text-sm">Atasi Panas Ekstrim</h3>
+                    </div>
+                    <p class="sub-text text-sm leading-relaxed">
+                        Gunakan mulsa organik (jerami) pada permukaan tanah saat kemarau panjang untuk menjaga kelembaban dan menurunkan suhu tanah.
+                    </p>
+                </div>
+
+                <div class="edu-card p-8 rounded-3xl border border-emerald-500/10 secondary-btn reveal">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <h3 class="text-lg font-bold uppercase italic text-sm">Waspada Angin</h3>
+                    </div>
+                    <p class="sub-text text-sm leading-relaxed">
+                        Pilih varietas padi berbatang pendek dan kokoh jika lahan Anda berada di area terbuka yang rawan angin kencang (risiko rebah).
+                    </p>
+                </div>
+
+            </div>
+
+            <section class="p-8 rounded-[2.5rem] bg-emerald-600/5 border border-emerald-500/20 reveal text-center">
+                <i class="fas fa-lightbulb text-emerald-500 text-2xl mb-4"></i>
+                <h3 class="text-lg font-black text-white mb-2 uppercase italic">Ingat!</h3>
+                <p class="text-sm sub-text">"Alam tidak bisa dilawan, tapi bisa kita kawan dengan data yang tepat."</p>
+            </section>
+        </main>
+    </div>
+
+    <script src="../index.js"></script>
+</body>
+</html>

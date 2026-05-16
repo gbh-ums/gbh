@@ -1,0 +1,113 @@
+// Ambil UID dari session yang diset saat login (konsisten dengan peran.js)
+const userId = sessionStorage.getItem("uid");
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (!userId) {
+        window.location.replace("../login_sign/login_sign.html");
+        return;
+    }
+    ambilProfil();
+    muatKeranjang();
+});
+
+async function ambilProfil() {
+    try {
+        const doc = await db.collection("users").doc(userId).get();
+        if (doc.exists) {
+            document.getElementById('distName').innerText = doc.data().nama_lengkap;
+            document.getElementById('distAddress').innerText = doc.data().alamat_gudang || doc.data().alamat || "Alamat tidak disetel";
+        }
+    } catch (e) { console.error("Error profil:", e); }
+}
+
+async function muatKeranjang() {
+    const container = document.getElementById('checkoutGroupedItems');
+    try {
+        const snapshot = await db.collection("cart_distributor")
+            .where("distId", "==", userId)
+            .get();
+        
+        let html = "";
+        let total = 0;
+
+        snapshot.forEach(doc => {
+            const item = doc.data();
+            const sub = (item.harga_satuan || 0) * (item.jumlah || 0);
+            const isSelected = item.selected !== false; // Default terpilih
+
+            if(isSelected) total += sub;
+
+            html += `
+                <div class="bg-white p-4 rounded-3xl border border-slate-100 flex items-center gap-4 shadow-sm transition-all">
+                    <input type="checkbox" ${isSelected ? 'checked' : ''} onchange="updateCeklis('${doc.id}', this.checked)" class="w-6 h-6 accent-blue-600 cursor-pointer">
+                    <div class="flex-1">
+                        <h4 class="font-black text-[11px] uppercase text-slate-800 tracking-tight">${item.nama_produk}</h4>
+                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Dari: ${item.sumber_pasokan}</p>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-[10px] font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded-lg">${item.jumlah} KG</span>
+                            <span class="text-xs font-black text-slate-700 font-mono">Rp ${sub.toLocaleString('id-ID')}</span>
+                        </div>
+                    </div>
+                </div>`;
+        });
+
+        container.innerHTML = html || "<p class='text-center py-10 text-slate-400 text-[10px] font-bold uppercase'>Keranjang Kosong</p>";
+        document.getElementById('totalFinal').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+    } catch (e) { console.error("Error keranjang:", e); }
+}
+
+async function updateCeklis(id, status) {
+    await db.collection("cart_distributor").doc(id).update({ selected: status });
+    muatKeranjang();
+}
+
+function bukaModalQRIS() {
+    if(document.getElementById('totalFinal').innerText === "Rp 0") {
+        return Swal.fire('Pilih Barang', 'Ceklis minimal satu barang untuk dibayar.', 'warning');
+    }
+    document.getElementById('qrisModal').classList.remove('hidden');
+}
+
+function tutupModal() {
+    document.getElementById('qrisModal').classList.add('hidden');
+}
+
+async function selesaiBayar() {
+    Swal.fire({ title: 'Memproses Order...', didOpen: () => Swal.showLoading() });
+    
+    try {
+        const snapshot = await db.collection("cart_distributor")
+            .where("distId", "==", userId)
+            .where("selected", "==", true).get();
+
+        if (snapshot.empty) return;
+
+        const batch = db.batch();
+        const orderId = "GBH-" + Date.now();
+        let items = [];
+        let total = 0;
+
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            items.push(data);
+            total += (data.harga_satuan * data.jumlah);
+            batch.delete(doc.ref);
+        });
+
+        const historyRef = db.collection("orders_distributor").doc(orderId);
+        batch.set(historyRef, {
+            orderId, items, total_bayar: total,
+            distId: userId, 
+            status: "menunggu_konfirmasi_pabrik",
+            payment_method: "QRIS",
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        await batch.commit();
+        Swal.fire('Berhasil!', 'Pesanan sedang diproses pabrik.', 'success')
+            .then(() => window.location.href = "history.html");
+            
+    } catch (e) { 
+        Swal.fire('Error', e.message, 'error'); 
+    }
+}

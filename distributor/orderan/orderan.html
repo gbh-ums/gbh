@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orderan Masuk - G.A.B.A.H</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="orderan.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="moving-bg min-h-screen p-6">
+
+    <div class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <div class="flex items-center gap-4">
+                <button onclick="window.history.back()" class="btn-icon"><i class="fas fa-arrow-left"></i></button>
+                <div>
+                    <h1 class="text-2xl font-black text-blue-600 tracking-tighter uppercase">Orderan Masuk</h1>
+                    <p class="text-[10px] font-bold opacity-50 tracking-widest uppercase">Dashboard Manajemen</p>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="max-w-6xl mx-auto">
+    <div class="flex flex-wrap gap-4 mb-6 z-10">
+        <div class="glass-card px-4 py-2 flex items-center gap-3">
+            <i class="fas fa-filter text-blue-600 text-xs"></i>
+            <select id="filter-month" class="bg-transparent text-xs font-bold outline-none uppercase">
+                <option value="all">Semua Bulan</option>
+                <option value="0">Januari</option>
+                <option value="1">Februari</option>
+                <option value="2">Maret</option>
+                <option value="3">April</option>
+                <option value="4">Mei</option>
+                <option value="5">Juni</option>
+                <option value="6">Juli</option>
+                <option value="7">Agustus</option>
+                <option value="8">September</option>
+                <option value="9">Oktober</option>
+                <option value="10">November</option>
+                <option value="11">Desember</option>
+            </select>
+            <select id="filter-year" class="bg-transparent text-xs font-bold outline-none uppercase">
+                </select>
+
+
+
+        </div>
+                    <button onclick="exportToExcel()" class="btn-excel">
+                <i class="fas fa-file-excel mr-2"></i> Ekspor Ke Excel
+            </button>
+    </div>
+
+<div class="glass-card p-6 mb-8">
+    <div class="flex justify-between items-center mb-4">
+        <div>
+            <h3 class="text-[10px] font-black uppercase opacity-50 tracking-widest">Analitik Pesanan (Selesai)</h3>
+            <p id="chart-title" class="text-[11px] font-bold text-slate-400">Tampilan 12 Bulan</p>
+        </div>
+        <div class="flex bg-slate-100 p-1 rounded-xl">
+            <button onclick="changeChartMode('year')" id="btn-year" class="px-4 py-1.5 rounded-lg text-[10px] font-black uppercase transition-all bg-white shadow-sm text-blue-600">12 Bulan</button>
+            <button onclick="changeChartMode('month')" id="btn-month" class="px-4 py-1.5 rounded-lg text-[10px] font-black uppercase transition-all text-slate-400">30 Hari</button>
+        </div>
+    </div>
+    <div style="height: 250px; position: relative;">
+        <canvas id="salesChart"></canvas>
+    </div>
+</div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+            <div class="stat-card border-blue-500">
+                <span>Menunggu</span>
+                <p id="count-pending" class="text-blue-600">0</p>
+            </div>
+            <div class="stat-card border-orange-500">
+                <span>Diproses</span>
+                <p id="count-process" class="text-orange-600">0</p>
+            </div>
+            <div class="stat-card border-emerald-500">
+                <span>Selesai</span>
+                <p id="count-done" class="text-emerald-600">0</p>
+            </div>
+            <div class="stat-card border-red-500">
+                <span>Batal</span>
+                <p id="count-cancel" class="text-red-600">0</p>
+            </div>
+            <div class="stat-card border-purple-600 bg-purple-50/50">
+                <span class="text-purple-600">Total Penghasilan</span>
+                <p id="total-income" class="text-purple-700 text-lg">Rp 0</p>
+            </div>
+        </div>
+
+        <div class="glass-card overflow-hidden">
+            <div class="p-6 bg-white/50 border-b flex justify-between items-center">
+                <h3 class="text-xs font-black uppercase tracking-widest text-slate-500">Daftar Transaksi Terbaru</h3>
+                <button onclick="location.reload()" class="text-blue-500 hover:rotate-180 transition-all"><i class="fas fa-sync-alt"></i></button>
+            </div>
+            <div class="overflow-x-auto p-4">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="text-[10px] uppercase opacity-40 font-black border-b">
+                            <th class="p-3">Pembeli</th>
+                            <th class="p-3">Produk</th>
+                            <th class="p-3 text-center">Qty</th>
+                            <th class="p-3 text-right">Total</th>
+                            <th class="p-3 text-center">Status</th>
+                            <th class="p-3 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableOrderan" class="text-xs"></tbody>
+                </table>
+                <div id="empty-state" class="hidden py-20 text-center opacity-30">
+                    <i class="fas fa-box-open text-4xl mb-2"></i>
+                    <p class="font-black uppercase text-[10px]">Belum ada pesanan</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="orderan.js"></script>
+</body>
+</html>

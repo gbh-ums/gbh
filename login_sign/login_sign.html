@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Ekosistem G.A.B.A.H</title>
+    <script src="https://cdn.tailwindcss.com"></script> <meta name="referrer" content="no-referrer">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="login_sign.css">
+</head>
+<body class="moving-bg min-h-screen p-6 transition-colors duration-500 overflow-y-auto">
+
+    <div class="theme-overlay"></div>
+    <div class="grain-overlay"></div>
+
+    <div class="fixed top-6 right-6 z-[1100]">
+        <button id="theme-toggle" class="w-12 h-12 rounded-2xl flex items-center justify-center border border-emerald-500/30 glass-card text-emerald-600 hover:scale-110 transition-all shadow-xl">
+            <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+    </div>
+
+    <div class="min-h-[85vh] flex items-center justify-center">
+        <div class="glass-card p-10 rounded-[2.5rem] shadow-2xl w-full max-w-md relative z-10 border-emerald-500/10">
+            <div class="text-center mb-8">
+                <div class="icon-container bg-emerald-500/20 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 rotate-3 shadow-inner">
+                    <i class="fas fa-user-lock text-emerald-600 text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-black main-title tracking-tighter uppercase">Selamat Datang</h2>
+                <p class="sub-text text-[10px] font-bold uppercase tracking-widest opacity-70">Masuk ke Panel Kendali Mitra</p>
+            </div>
+
+            <form id="loginForm" class="space-y-5">
+                <div class="form-group">
+                    <label class="block mb-2 font-bold text-[10px] uppercase tracking-widest sub-text">Email Mitra</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-emerald-600/40">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <input type="email" id="loginUser" placeholder="Masukkan email terdaftar" required 
+                            class="input-field pl-12 w-full rounded-2xl p-4 text-sm font-semibold outline-none transition-all shadow-sm">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="block mb-2 font-bold text-[10px] uppercase tracking-widest sub-text">Password</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-emerald-600/40">
+                            <i class="fas fa-key"></i>
+                        </span>
+                        <input type="password" id="loginPass" placeholder="Masukkan password" required 
+                            class="input-field pl-12 w-full rounded-2xl p-4 text-sm font-semibold outline-none transition-all shadow-sm">
+                    </div>
+                </div>
+
+                <div class="form-group flex items-start gap-3 mt-4">
+                    <input type="checkbox" id="setujuSyarat" required class="mt-1 w-4 h-4 rounded border-emerald-500 text-emerald-600 focus:ring-emerald-500 cursor-pointer accent-emerald-600">
+                    <label for="setujuSyarat" class="text-[10px] sub-text leading-tight cursor-pointer font-bold opacity-80">
+                        Saya menyetujui <a href="#" class="text-emerald-600 font-black hover:underline">Syarat & Ketentuan</a> G.A.B.A.H.
+                    </label>
+                </div>
+
+                <button type="submit" id="btnLogin" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center uppercase tracking-widest text-[11px] active:scale-95">
+                    <i class="fas fa-sign-in-alt mr-2"></i> Masuk Sekarang
+                </button>
+
+                <div class="text-center mt-8 space-y-3">
+                    <p class="text-[11px] sub-text font-bold uppercase tracking-widest opacity-70">
+                        Belum punya akun? <a href="../register/register.html" class="text-emerald-600 font-black hover:underline">Daftar Sekarang</a>
+                    </p>
+                    <div class="pt-4">
+                        <a href="https://wa.me/6281244858962" class="text-emerald-600 font-black hover:underline text-[10px] uppercase tracking-tighter">Bantuan Admin</a>
+                    </div>
+                </div>
+
+
+
+                                   <div class="mt-10 overflow-hidden whitespace-nowrap border-y border-emerald-500/20 py-2 relative">
+            <div class="flex animate-scroll text-[10px] font-black uppercase tracking-[0.3em] text-emerald-600/50">
+                <span class="mx-4">Global Agriculture & Business Automation Hub</span>
+                <span class="mx-4">•</span>
+                <span class="mx-4">Digitalisasi Pertanian Masa Depan</span>
+                <span class="mx-4">•</span>
+                <span class="mx-4">Ekosistem Terintegrasi Mitra G.A.B.A.H</span>
+                <span class="mx-4">•</span>
+                <span class="mx-4">Global Agriculture & Business Automation Hub</span>
+            </div>
+        </div>
+
+
+        
+            </form>
+        </div>
+    </div>
+
+    <div class="w-full max-w-5xl mx-auto px-6 mt-12 mb-20 relative z-20">
+        <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-center mb-6 opacity-50">Partner Ekosistem G.A.B.A.H</h3>
+        <div id="ad-sidebar-container" class="hidden grid grid-cols-2 md:grid-cols-4 gap-6 animate-fade-in">
+            </div>
+    </div>
+
+  <div id="customModal" class="hidden fixed inset-0 z-[2000] flex items-center justify-center bg-black/60 backdrop-blur-md p-4">
+    <div class="glass-card p-10 rounded-[2.5rem] shadow-2xl w-full max-w-sm text-center border-emerald-500/10">
+        <div id="modalIcon" class="text-5xl mb-4 font-black"></div>
+        <h3 id="modalTitle" class="text-xl font-black mb-2 main-title tracking-tighter uppercase"></h3>
+        <p id="modalMessage" class="sub-text mb-8 text-xs font-semibold"></p>
+        
+        <div class="flex flex-col gap-3">
+            <button id="modalBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-3.5 rounded-2xl transition-all active:scale-95 uppercase tracking-widest text-[10px]">
+                MENGERTI
+            </button>
+            <button id="btnOke" class="hidden w-full bg-slate-500 hover:bg-slate-600 text-white font-black py-3.5 rounded-2xl transition-all active:scale-95 uppercase tracking-widest text-[10px]">
+                OKE, SAYA TUNGGU
+            </button>
+        </div>
+    </div>
+</div>
+    <div id="ad-popup" class="hidden fixed inset-0 z-[3000] bg-black/80 backdrop-blur-sm items-center justify-center p-6">
+        <div class="relative max-w-lg w-full">
+            <button id="close-ad-popup" class="absolute -top-12 right-0 text-white text-3xl">&times;</button>
+            <div id="popup-content" class="rounded-3xl overflow-hidden shadow-2xl border-2 border-emerald-500/30"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB6HETQvxf6jZ4d48BxvOFtFU0fuTXZN_I",
+            authDomain: "gabah-cc201.firebaseapp.com",
+            projectId: "gabah-cc201",
+            storageBucket: "gabah-cc201.firebasestorage.app",
+            messagingSenderId: "497754423789",
+            appId: "1:497754423789:web:64b227e15b83f6d02867e4"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        window.auth = getAuth(app);
+        window.db = getFirestore(app);
+        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+        window.getDoc = getDoc;
+        window.doc = doc;
+    </script>
+    <script src="login_sign.js"></script>
+</body>
+</html>

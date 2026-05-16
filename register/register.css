@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
+:root {
+    --bg-color: #f0fdf4;
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --text-main: #064e3b;
+    --text-sub: #374151;
+    --input-bg: rgba(255, 255, 255, 0.9);
+    --border-color: rgba(16, 185, 129, 0.1);
+    --overlay-opacity: 0.1;
+}
+
+.theme-dark {
+    --bg-color: #020617;
+    --card-bg: rgba(15, 23, 42, 0.6);
+    --text-main: #ffffff;
+    --text-sub: #94a3b8;
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --overlay-opacity: 0.85;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    transition: background-color 0.8s ease;
+    overflow-x: hidden;
+}
+
+/* Base UI identik dengan Login */
+.moving-bg {
+    background-image: url('tes.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    animation: movePingPong 80s linear infinite alternate;
+}
+
+@keyframes movePingPong {
+    from { background-position: 0% 50%; }
+    to { background-position: 100% 50%; }
+}
+
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--border-color);
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color);
+    opacity: var(--overlay-opacity);
+    z-index: 1; pointer-events: none;
+}
+
+.grain-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.03; z-index: 5; pointer-events: none;
+}
+
+.main-title { color: var(--text-main); }
+.sub-text { color: var(--text-sub); }
+
+.input-field {
+    background: var(--input-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-main) !important;
+}
+
+.input-field:focus {
+    border-color: #10b981 !important;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animasi Scrolling Text */
+@keyframes scrollText {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+    display: flex;
+    width: 200%;
+    animation: scrollText 20s linear infinite;
+}
+
+
+
+
+
+
+
+
+
+/* Pastikan dropdown mengikuti tema gelap */
+.theme-dark .input-field {
+    background-color: #1e293b !important; /* Warna biru gelap slate-800 */
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Mengubah warna teks opsi di dalam dropdown agar terlihat */
+.theme-dark select option {
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+/* Perbaikan khusus untuk peramban berbasis Webkit (Chrome/Safari) */
+.theme-dark .input-field::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+
+
+
+
+
+
+
+
+
+/* Iklan Mini Card */
+.ad-card-mini {
+    position: relative;
+    height: 120px;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+.ad-card-mini:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: #10b981;
+}
+
+.ad-card-mini img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+.ad-tag {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #10b981;
+    color: white;
+    font-size: 8px;
+    font-weight: 900;
+    padding: 2px 8px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+}
+
+/* Animasi Fade In */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

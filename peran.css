@@ -1,0 +1,230 @@
+/* --- G.A.B.A.H RADAR SYSTEM --- */
+/* Warna Khusus Setiap Kotak di Light Mode */
+.btn-teknis { background-color: #eff6ff; border-color: #dbeafe; color: #2563eb; } /* Biru */
+.btn-rekap { background-color: #fff7ed; border-color: #ffedd5; color: #ea580c; }   /* Oranye */
+.btn-konsul { background-color: #faf5ff; border-color: #f3e8ff; color: #9333ea; }  /* Ungu */
+
+/* Penyesuaian Otomatis saat Mode Gelap (theme-dark) Aktif */
+body.theme-dark .glass-nav { background-color: rgba(30, 41, 59, 0.9) !important; border-color: rgba(255, 255, 255, 0.1); }
+body.theme-dark #modalCS .animate-popup { background-color: #0f172a !important; border-color: #1e293b; }
+body.theme-dark #modalCS h3 { color: #f8fafc; }
+
+body.theme-dark .btn-teknis { background-color: rgba(37, 99, 235, 0.1); border-color: rgba(37, 99, 235, 0.2); color: #60a5fa; }
+body.theme-dark .btn-rekap { background-color: rgba(234, 88, 12, 0.1); border-color: rgba(234, 88, 12, 0.2); color: #fb923c; }
+body.theme-dark .btn-konsul { background-color: rgba(147, 51, 234, 0.1); border-color: rgba(147, 51, 234, 0.2); color: #c084fc; }
+/* Animasi Tombol saat Radar Aktif */
+@keyframes pulse-radar {
+    0% { box-shadow: 0 0 0 0 var(--accent-glow); }
+    70% { box-shadow: 0 0 0 15px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+#btnRadar.bg-slate-800 {
+    animation: pulse-radar 2s infinite;
+    border: 1px solid var(--accent-color);
+}
+
+/* Transisi Halus Buka-Tutup Jendela Radar */
+#radarContainer {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: 75vh; /* Batasi tinggi agar tidak "balapan" dengan tabel bawah */
+    overflow-y: auto;
+    padding-right: 5px; /* Spasi untuk scrollbar */
+}
+
+/* Penyesuaian Grup Wilayah agar tetap menempel saat di-scroll */
+.radar-group-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg-color);
+    padding: 15px 0;
+    margin-bottom: 10px;
+    backdrop-filter: blur(10px);
+}
+
+/* Efek Hover Gambar Produk di Radar */
+#radarContainer .glass-card img {
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#radarContainer .glass-card:hover img {
+    transform: scale(1.08) rotate(1deg);
+}
+
+/* Animasi Muncul Kartu Produk (Staggered-like) */
+#radarContainer > div {
+    animation: slideUp 0.4s ease-out forwards;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Styling Scrollbar Khusus Container Radar */
+#radarContainer::-webkit-scrollbar {
+    width: 4px;
+}
+
+#radarContainer::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 10px;
+    opacity: 0.3;
+}
+
+:root {
+    --bg-color: #ffffff;
+    --text-color: #1e293b;
+    --card-bg: rgba(255, 255, 255, 0.8);
+}
+
+body.theme-dark {
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    background-color: var(--bg-color) !important;
+    color: var(--text-color);
+}
+
+/* Terapkan ke Glass Card agar warnanya berubah */
+body.theme-dark .glass-card {
+    background: var(--card-bg);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+/* Perbaikan input agar teksnya terlihat di mode gelap */
+body.theme-dark .edit-input {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* Penyesuaian khusus Mobile */
+@media (max-width: 640px) {
+    /* Perkecil padding body */
+    body { padding: 1rem !important; }
+
+    /* Perkecil Header & Icon */
+    .w-16.h-16 { width: 3.5rem !important; height: 3.5rem !important; }
+    h1 { font-size: 1.25rem !important; }
+
+    /* Perkecil Kartu Stats agar tidak sesak */
+    .glass-card.p-6 { padding: 1rem !important; }
+    .text-2xl { font-size: 1.1rem !important; }
+    
+    /* Marketplace Adjustment */
+    #radarContainer { 
+        gap: 1rem !important; 
+        grid-template-columns: repeat(2, 1fr) !important; /* Buat 2 kolom di HP agar hemat ruang */
+    }
+
+    /* Perkecil Kartu Produk di Marketplace */
+    .marketplace-card { padding: 0.75rem !important; border-radius: 1.5rem !important; }
+    .marketplace-card .h-52 { h-32 !important; } /* Perkecil tinggi foto */
+    .marketplace-card h4 { font-size: 0.8rem !important; }
+    .marketplace-card .text-3xl { font-size: 1.5rem !important; } /* Angka stok diperkecil */
+}
+
+
+
+
+    @keyframes fadeInScale {
+        0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .animate-popup {
+        animation: fadeInScale 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    .glass-card {
+        transition: all 0.3s ease;
+    }
+@keyframes fadeInScale {
+        0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .animate-popup {
+        animation: fadeInScale 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    body {
+        padding-bottom: 100px; /* Agar konten tidak tertutup bar bawah */
+    }
+
+
+
+    @keyframes rainbow-bg {
+    0% { background-color: rgb(59, 130, 246); }    /* Biru */
+    25% { background-color: rgb(239, 68, 68); }    /* Merah */
+    50% { background-color: rgb(34, 197, 94); }    /* Hijau */
+    75% { background-color: rgb(249, 115, 22); }   /* Oranye */
+    100% { background-color: rgb(59, 130, 246); }  /* Kembali ke Biru */
+}
+
+.btn-rainbow {
+    animation: rainbow-bg 5s linear infinite;
+    border: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Container tombol di modal agar vertikal */
+#customModal .flex-col {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Berikan sedikit efek hover agar lebih interaktif */
+#modalDashBtn, #modalConfirmBtn, #modalCancelBtn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
+    width: 100%;
+}
+
+#modalDashBtn:hover, #modalConfirmBtn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsif untuk HP agar tidak terlalu panjang */
+@media (max-width: 640px) {
+    #customModal .animate-popup {
+        width: 90%;
+        padding: 1.5rem !important;
+    }
+    
+    #customModal button {
+        padding: 1rem !important;
+        font-size: 10px !important;
+    }
+}
+
+
+
+/* Styling Khusus Widget Cuaca Hijau */
+#weather-card {
+    background: rgba(16, 185, 129, 0.05); /* Hijau sangat transparan */
+    border-color: rgba(16, 185, 129, 0.2);
+}
+
+/* Penyesuaian saat Mode Gelap aktif */
+body.theme-dark #weather-card {
+    background: rgba(16, 185, 129, 0.1); /* Sedikit lebih tebal di mode gelap */
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* Pastikan angka derajat tetap hijau emerald */
+body.theme-dark #temp, 
+body.theme-dark #city-name {
+    color: #10b981 !important;
+}

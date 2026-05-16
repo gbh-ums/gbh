@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G.A.B.A.H - Testing Upload Gambar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* CSS Integrasi - Modern Dark Theme */
+        body {
+            background: #0f172a;
+            font-family: 'Inter', sans-serif;
+            color: white;
+        }
+        .upload-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+        #preview {
+            max-width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 16px;
+            display: none;
+            border: 2px solid #00AA5B;
+        }
+        .btn-upload {
+            background: #00AA5B;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-upload:hover {
+            background: #008a4a;
+            transform: translateY(-2px);
+        }
+        .btn-upload:disabled {
+            background: #475569;
+            cursor: not-allowed;
+        }
+        input {
+            background: rgba(15, 23, 42, 0.5) !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+
+    <div class="upload-card p-8 w-full max-w-md shadow-2xl">
+        <div class="text-center mb-8">
+            <div class="w-20 h-20 bg-emerald-500/20 text-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-emerald-500/30">
+                <i class="fas fa-seedling text-3xl"></i>
+            </div>
+            <h1 class="text-2xl font-black tracking-tight">DATA PRODUK BARU</h1>
+            <p class="text-[10px] uppercase tracking-[0.2em] text-emerald-500 font-bold">Firebase Storage Testing</p>
+        </div>
+
+        <div class="space-y-5">
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2 block">Nama Produk</label>
+                <input type="text" id="namaProduk" placeholder="Contoh: Gabah Long Grain" 
+                    class="w-full p-3.5 rounded-xl border border-slate-700 focus:border-emerald-500 outline-none transition">
+            </div>
+
+            <div>
+                <label class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2 block">Foto Produk</label>
+                <input type="file" id="inputFoto" accept="image/*" 
+                    class="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-[10px] file:font-black file:uppercase file:bg-emerald-600 file:text-white hover:file:bg-emerald-700 cursor-pointer">
+            </div>
+
+            <div class="flex justify-center">
+                <img id="preview" src="" alt="Preview">
+            </div>
+
+            <button id="btnSimpan" onclick="uploadDanSimpan()" 
+                class="btn-upload w-full py-4 text-white rounded-xl font-black text-xs uppercase tracking-widest shadow-xl shadow-emerald-900/20">
+                Simpan Ke Cloud
+            </button>
+            
+            <div id="status" class="text-center text-[10px] font-bold uppercase tracking-widest mt-4"></div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
+    <script>
+        // 1. Konfigurasi (Menggunakan data project G.A.B.A.H Anda)
+        const firebaseConfig = {
+            apiKey: "AIzaSyB6HETQvxf6jZ4d48BxvOFtFU0fuTXZN_I",
+            authDomain: "gabah-cc201.firebaseapp.com",
+            projectId: "gabah-cc201",
+            storageBucket: "gabah-cc201.appspot.com",
+            messagingSenderId: "497754423789",
+            appId: "1:497754423789:web:64b22"
+        };
+
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
+        // 2. Logic Preview
+        const inputFoto = document.getElementById('inputFoto');
+        const preview = document.getElementById('preview');
+
+        inputFoto.onchange = () => {
+            const [file] = inputFoto.files;
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+                preview.style.display = 'block';
+            }
+        }
+
+        // 3. Logic Upload & Save
+        async function uploadDanSimpan() {
+            const nama = document.getElementById('namaProduk').value;
+            const file = inputFoto.files[0];
+            const btn = document.getElementById('btnSimpan');
+            const statusBox = document.getElementById('status');
+
+            if (!nama || !file) {
+                alert("Lengkapi nama produk dan foto!");
+                return;
+            }
+
+            try {
+                // UI State: Loading
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Sedang Memproses...';
+                statusBox.className = "text-center text-[10px] font-bold uppercase text-emerald-400";
+                statusBox.innerText = "Mengunggah gambar ke Storage...";
+
+                // A. Upload ke Storage
+                const namaFile = `produk_${Date.now()}_${file.name}`;
+                const storageRef = storage.ref('katalog_produk/' + namaFile);
+                const snapshot = await storageRef.put(file);
+
+                // B. Ambil URL Publik
+                const urlGambar = await snapshot.ref.getDownloadURL();
+                statusBox.innerText = "Gambar Oke! Menyimpan data ke Firestore...";
+
+                // C. Simpan ke Firestore (Collection: produk_baru)
+                await db.collection("produk_baru").add({
+                    nama: nama,
+                    foto: urlGambar,
+                    waktu_input: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                // SELESAI
+                statusBox.innerText = "Berhasil disimpan ke Cloud!";
+                alert("Data & Gambar Terintegrasi!");
+                
+                // Reset
+                document.getElementById('namaProduk').value = "";
+                inputFoto.value = "";
+                preview.style.display = 'none';
+
+            } catch (err) {
+                console.error(err);
+                statusBox.className = "text-center text-[10px] font-bold uppercase text-red-500";
+                statusBox.innerText = "Error: " + err.message;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Simpan Ke Cloud';
+            }
+        }
+    </script>
+</body>
+</html>

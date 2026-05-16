@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G.A.B.A.H - Optimalisasi Lahan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        /* Fallback: Memastikan konten muncul jika script cuaca di index.js error */
+        .reveal {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    </style>
+</head>
+<body class="moving-bg min-h-screen flex flex-col overflow-x-hidden theme-dark">
+
+    <div class="theme-overlay"></div>
+    <div class="grain-overlay"></div>
+
+    <div class="relative z-10 p-4 md:p-10">
+        <nav class="max-w-4xl mx-auto mb-10 flex justify-between items-center">
+            <a href="../index.html" class="secondary-btn px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+            
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="w-10 h-10 rounded-full secondary-btn flex items-center justify-center">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+                <a href="../register/register.html" class="bg-emerald-600 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg shadow-emerald-500/20">
+                    Daftar
+                </a>
+            </div>
+        </nav>
+
+        <header class="max-w-4xl mx-auto mb-12 reveal">
+            <div class="flex items-center gap-6">
+                <div class="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-500 text-3xl">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div>
+                    <span class="badge px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest border">Edukasi Publik</span>
+                    <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mt-2">Optimalisasi Lahan</h1>
+                    <p class="sub-text font-medium">Panduan peningkatan produktivitas tanah secara berkelanjutan.</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-4xl mx-auto space-y-8">
+            <section class="secondary-btn p-8 rounded-[2.5rem] reveal">
+                <h2 class="text-xl font-black mb-4 text-emerald-500 uppercase">Filosofi Kesuburan</h2>
+                <p class="sub-text leading-relaxed">
+                    Optimalisasi lahan di ekosistem G.A.B.A.H menitikberatkan pada keseimbangan unsur hara. Kami percaya bahwa tanah yang sehat adalah aset jangka panjang bagi petani. Melalui pendekatan berbasis data, kita dapat menekan biaya pupuk kimia sembari meningkatkan kualitas gabah hasil panen.
+                </p>
+            </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="edu-card p-8 rounded-3xl border border-emerald-500/10 secondary-btn reveal">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <h3 class="text-lg font-bold uppercase italic text-sm">Langkah 1: Sanitasi</h3>
+                    </div>
+                    <p class="sub-text text-sm leading-relaxed">
+                        Pembersihan sisa jerami musim lalu menggunakan dekomposer organik untuk mempercepat fermentasi hara alami kembali ke tanah.
+                    </p>
+                </div>
+
+                <div class="edu-card p-8 rounded-3xl border border-emerald-500/10 secondary-btn reveal">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h3 class="text-lg font-bold uppercase italic text-sm">Langkah 2: Irigasi</h3>
+                    </div>
+                    <p class="sub-text text-sm leading-relaxed">
+                        Pengaturan air "macak-macak" (dangkal) untuk merangsang pertumbuhan akar yang lebih dalam, kuat, dan tahan terhadap rebah.
+                    </p>
+                </div>
+            </div>
+
+            <section class="p-8 rounded-[2.5rem] bg-emerald-600/5 border border-emerald-500/20 reveal">
+                <h3 class="text-lg font-black text-white mb-6 uppercase tracking-widest italic">Standard Operasional G.A.B.A.H</h3>
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-emerald-600 flex-shrink-0 flex items-center justify-center text-white font-black text-xs shadow-lg shadow-emerald-600/40">1</div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm mb-1 uppercase">Monitor Kelembaban</h4>
+                            <p class="text-xs sub-text leading-relaxed">Gunakan sensor IoT untuk menjaga kelembaban tanah di angka ideal **40% - 60%** guna mendukung metabolisme tanaman yang optimal.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-emerald-600 flex-shrink-0 flex items-center justify-center text-white font-black text-xs shadow-lg shadow-emerald-600/40">2</div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm mb-1 uppercase">Pemupukan Berimbang</h4>
+                            <p class="text-xs sub-text leading-relaxed">Pemberian nutrisi disesuaikan dengan fase pertumbuhan (Vegetatif & Generatif) untuk efisiensi biaya dan hasil maksimal.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../index.js"></script>
+</body>
+</html>

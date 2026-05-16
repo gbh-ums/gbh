@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G.A.B.A.H - Tentang Kami</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        /* Fallback agar konten tetap muncul jika JS reveal belum berjalan */
+        .reveal { opacity: 1 !important; transform: translateY(0) !important; }
+    </style>
+</head>
+<body class="moving-bg min-h-screen flex flex-col overflow-x-hidden theme-dark">
+
+    <div class="theme-overlay"></div>
+    <div class="grain-overlay"></div>
+
+    <div class="relative z-10 p-4 md:p-10">
+        <nav class="max-w-4xl mx-auto mb-10 flex justify-between items-center">
+            <a href="../index.html" class="secondary-btn px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+            
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="w-10 h-10 rounded-full secondary-btn flex items-center justify-center">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+                <a href="../register/register.html" class="bg-emerald-600 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg shadow-emerald-500/20">
+                    Daftar
+                </a>
+            </div>
+        </nav>
+
+        <header class="max-w-4xl mx-auto mb-12 reveal text-center">
+            <div class="flex flex-col items-center gap-4">
+                <div class="w-20 h-20 bg-emerald-500/20 rounded-3xl flex items-center justify-center text-emerald-500 text-4xl shadow-xl shadow-emerald-500/10">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div>
+                    <span class="badge px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] border border-emerald-500/30">Mengenal Lebih Dekat</span>
+                    <h1 class="text-5xl md:text-6xl font-black uppercase tracking-tighter mt-4 italic logo-text">Tentang Kami</h1>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-4xl mx-auto space-y-12">
+            
+            <section class="secondary-btn p-10 rounded-[3rem] reveal relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 text-emerald-500/10 text-[10rem]">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h2 class="text-2xl font-black mb-6 text-emerald-500 uppercase tracking-widest">Akar Perjuangan</h2>
+                <div class="space-y-4 sub-text leading-relaxed">
+                    <p>
+                        G.A.B.A.H (Global Agriculture & Business Automation Hub) lahir dari keresahan akan kesenjangan informasi yang dialami petani lokal. Kami percaya bahwa teknologi seharusnya tidak menjauhkan manusia dari alam, melainkan menjadi alat untuk menjaga kelestariannya.
+                    </p>
+                    <p>
+                        Berawal dari visi untuk menyejahterakan sektor hulu pertanian, kami membangun ekosistem digital yang transparan, mulai dari pengolahan lahan hingga distribusi hasil panen ke tangan konsumen.
+                    </p>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="edu-card p-8 rounded-3xl border border-emerald-500/10 secondary-btn reveal">
+                    <h3 class="text-xl font-black text-white mb-4 uppercase italic">Visi Kami</h3>
+                    <p class="sub-text text-sm leading-relaxed">
+                        Menjadi standar global dalam otomatisasi pertanian yang mengutamakan keberlanjutan lingkungan dan keadilan ekonomi bagi petani.
+                    </p>
+                </div>
+
+                <div class="edu-card p-8 rounded-3xl border border-emerald-500/10 secondary-btn reveal">
+                    <h3 class="text-xl font-black text-white mb-4 uppercase italic">Misi Kami</h3>
+                    <ul class="sub-text text-sm space-y-3">
+                        <li class="flex gap-2">
+                            <span class="text-emerald-500">●</span>
+                            Memberikan akses data cuaca dan tanah secara presisi.
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-emerald-500">●</span>
+                            Memotong rantai distribusi yang merugikan produsen.
+                        </li>
+                        <li class="flex gap-2">
+                            <span class="text-emerald-500">●</span>
+                            Membangun komunitas petani yang melek teknologi digital.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center space-y-8 reveal">
+                <h2 class="text-2xl font-black uppercase tracking-widest italic">Nilai Utama Kami</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="p-6 rounded-2xl border border-white/5 bg-white/5">
+                        <i class="fas fa-heart text-emerald-500 mb-3 text-xl"></i>
+                        <h4 class="text-[10px] font-black uppercase text-white">Integritas</h4>
+                    </div>
+                    <div class="p-6 rounded-2xl border border-white/5 bg-white/5">
+                        <i class="fas fa-bolt text-emerald-500 mb-3 text-xl"></i>
+                        <h4 class="text-[10px] font-black uppercase text-white">Inovasi</h4>
+                    </div>
+                    <div class="p-6 rounded-2xl border border-white/5 bg-white/5">
+                        <i class="fas fa-leaf text-emerald-500 mb-3 text-xl"></i>
+                        <h4 class="text-[10px] font-black uppercase text-white">Lestari</h4>
+                    </div>
+                    <div class="p-6 rounded-2xl border border-white/5 bg-white/5">
+                        <i class="fas fa-hand-holding-heart text-emerald-500 mb-3 text-xl"></i>
+                        <h4 class="text-[10px] font-black uppercase text-white">Sinergi</h4>
+                    </div>
+                </div>
+            </div>
+
+            <section class="p-10 rounded-[3rem] bg-emerald-600/10 border border-emerald-500/20 reveal text-center">
+                <h3 class="text-lg font-black text-emerald-500 mb-4 uppercase tracking-[0.3em]">Mari Bergerak Bersama</h3>
+                <p class="text-sm sub-text mb-8 max-w-xl mx-auto">
+                    Kesejahteraan pangan dimulai dari satu klik data yang akurat. Mari menjadi bagian dari revolusi pertanian digital Indonesia.
+                </p>
+                <div class="flex justify-center gap-6 text-slate-400">
+                    <a href="#" class="hover:text-emerald-500 transition-colors"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-emerald-500 transition-colors"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-emerald-500 transition-colors"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="hover:text-emerald-500 transition-colors"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../index.js"></script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi - Ekosistem G.A.B.A.H</title>
+    <script src="https://cdn.tailwindcss.com"></script> <meta name="referrer" content="no-referrer">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="register.css">
+</head>
+<body class="moving-bg min-h-screen flex items-center justify-center p-6 transition-colors duration-500">
+
+    <div class="theme-overlay"></div>
+    <div class="grain-overlay"></div>
+
+    <div class="fixed top-6 right-6 z-[1100]">
+        <button id="theme-toggle" class="w-12 h-12 rounded-2xl flex items-center justify-center border border-emerald-500/30 glass-card text-emerald-600 hover:scale-110 transition-all shadow-xl">
+            <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+    </div>
+
+    <div class="w-full max-w-2xl relative z-10">
+        <div class="glass-card p-8 md:p-10 rounded-[2.5rem] shadow-2xl border-emerald-500/10">
+            <div class="text-center mb-8">
+                <div class="bg-emerald-500/20 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 rotate-3 shadow-inner">
+                    <i class="fas fa-user-plus text-emerald-600 text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-black main-title tracking-tighter uppercase">Daftar Mitra</h2>
+                <p class="sub-text text-[10px] font-bold uppercase tracking-widest opacity-70">Gabung ke dalam ekosistem digital G.A.B.A.H</p>
+            </div>
+
+            <form id="mitraForm" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="md:col-span-2 space-y-5">
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-emerald-600/40"><i class="fas fa-id-card"></i></span>
+                        <input type="text" name="nama" placeholder="NAMA LENGKAP" required class="input-field pl-12 w-full rounded-2xl p-4 text-sm font-semibold outline-none shadow-sm">
+                    </div>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-emerald-600/40"><i class="fab fa-whatsapp text-lg"></i></span>
+                        <input type="tel" name="whatsapp" placeholder="WHATSAPP (08...)" required class="input-field pl-12 w-full rounded-2xl p-4 text-sm font-semibold outline-none shadow-sm">
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-emerald-600/40"><i class="fas fa-envelope"></i></span>
+                    <input type="email" name="u_id" placeholder="EMAIL" required class="input-field pl-12 w-full rounded-2xl p-4 text-sm font-semibold outline-none shadow-sm">
+                </div>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-emerald-600/40"><i class="fas fa-key"></i></span>
+                    <input type="password" name="u_key" placeholder="PASSWORD" required class="input-field pl-12 w-full rounded-2xl p-4 text-sm font-semibold outline-none shadow-sm">
+                </div>
+
+                <div class="md:col-span-2 relative">
+                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-emerald-600/40"><i class="fas fa-briefcase"></i></span>
+                    <select name="u_level" required class="input-field pl-12 w-full rounded-2xl p-4 text-sm font-semibold appearance-none outline-none shadow-sm">
+                        <option value="">PILIH PERAN MITRA</option>
+                        <option value="petani">PETANI / PENYEDIA GABAH</option>
+                        <option value="pabrik">PABRIK PENGGILINGAN</option>
+                        <option value="distributor">DISTRIBUTOR / TOKO</option>
+                        <option value="konsumen">KONSUMEN / PEMBELI</option>
+                    </select>
+                </div>
+
+                <div class="md:col-span-2 grid grid-cols-2 gap-3">
+                    <select id="provinsi" name="provinsi" class="input-field w-full rounded-xl p-3 text-[10px] font-bold uppercase outline-none"></select>
+                    <select id="kota" name="kota" class="input-field w-full rounded-xl p-3 text-[10px] font-bold uppercase outline-none"></select>
+                    <select id="kecamatan" name="kecamatan" class="input-field w-full rounded-xl p-3 text-[10px] font-bold uppercase outline-none"></select>
+                    <select id="desa" name="desa" class="input-field w-full rounded-xl p-3 text-[10px] font-bold uppercase outline-none"></select>
+                </div>
+                
+                <div class="md:col-span-2 flex items-start gap-3 p-4 bg-emerald-500/5 rounded-2xl border border-emerald-500/10">
+                    <input type="checkbox" id="terms" required class="mt-1 w-4 h-4 rounded accent-emerald-600 cursor-pointer">
+                    <label for="terms" class="text-[10px] sub-text leading-tight cursor-pointer font-bold opacity-80 uppercase tracking-tighter">
+                        Saya menyetujui <span class="text-emerald-600 font-black">Syarat & Ketentuan</span> G.A.B.A.H.
+                    </label>
+                </div>
+
+                <button type="submit" id="btnSubmit" class="md:col-span-2 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center uppercase tracking-widest text-[11px] active:scale-95">
+                    <i class="fas fa-paper-plane mr-2"></i> Daftar Sekarang
+                </button>
+
+                <p class="md:col-span-2 text-center text-[11px] sub-text font-bold uppercase tracking-widest opacity-70 mt-4">
+                    Sudah punya akun? <a href="../login_sign/login_sign.html" class="text-emerald-600 font-black hover:underline">Masuk Disini</a>
+                </p>
+            </form>
+
+
+
+
+
+
+
+
+
+                   <div class="mt-10 overflow-hidden whitespace-nowrap border-y border-emerald-500/20 py-2 relative">
+            <div class="flex animate-scroll text-[10px] font-black uppercase tracking-[0.3em] text-emerald-600/50">
+                <span class="mx-4">Global Agriculture & Business Automation Hub</span>
+                <span class="mx-4">•</span>
+                <span class="mx-4">Digitalisasi Pertanian Masa Depan</span>
+                <span class="mx-4">•</span>
+                <span class="mx-4">Ekosistem Terintegrasi Mitra G.A.B.A.H</span>
+                <span class="mx-4">•</span>
+                <span class="mx-4">Global Agriculture & Business Automation Hub</span>
+            </div>
+        </div>
+    </div>
+
+
+
+        <div id="ad-sidebar-container" class="hidden grid grid-cols-2 md:grid-cols-4 gap-3 mt-8 w-full animate-fade-in">
+    </div>
+
+<div id="ad-popup" class="hidden fixed inset-0 z-[2000] items-center justify-center p-6 bg-black/80 backdrop-blur-md">
+    <div class="relative max-w-md w-full glass-card rounded-[2.5rem] overflow-hidden shadow-2xl border-emerald-500/20">
+        <button id="close-ad-popup" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-black/40 z-10">
+            <i class="fas fa-times"></i>
+        </button>
+        <div id="popup-content">
+            </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+    <div id="customModal" class="hidden fixed inset-0 z-[2000] flex items-center justify-center bg-black/60 backdrop-blur-md p-4">
+        <div class="glass-card p-10 rounded-[2.5rem] shadow-2xl w-full max-w-sm text-center border-emerald-500/10">
+            <div id="modalIcon" class="text-5xl mb-4 font-black"></div>
+            <h3 id="modalTitle" class="text-xl font-black mb-2 main-title tracking-tighter uppercase"></h3>
+            <p id="modalMsg" class="sub-text mb-8 text-xs font-semibold uppercase"></p>
+            <button id="closeModal" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-3.5 rounded-2xl transition-all active:scale-95 uppercase tracking-widest text-[10px]">MENGERTI</button>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB6HETQvxf6jZ4d48BxvOFtFU0fuTXZN_I",
+            authDomain: "gabah-cc201.firebaseapp.com",
+            projectId: "gabah-cc201",
+            storageBucket: "gabah-cc201.firebasestorage.app",
+            messagingSenderId: "497754423789",
+            appId: "1:497754423789:web:64b22"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        window.auth = getAuth(app);
+        window.db = getFirestore(app);
+        window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+        window.setDoc = setDoc;
+        window.doc = doc;
+    </script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("vNBjkPwutHXRMzjNJ");
+   })();
+</script>
+<script src="register.js"></script>
+</body>
+</html>

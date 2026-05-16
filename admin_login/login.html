@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G.A.B.A.H - Admin Access</title>
+    <script src="https://cdn.tailwindcss.com"></script> <meta name="referrer" content="no-referrer">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #020617; }
+        .glass-login { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="glass-login p-10 rounded-[2.5rem] w-full max-w-md shadow-2xl">
+        <div class="text-center mb-8">
+            <div class="w-16 h-16 bg-emerald-500/20 text-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-emerald-500/20">
+                <i class="fas fa-user-shield text-2xl"></i>
+            </div>
+            <h1 class="text-white font-extrabold text-xl tracking-tight">Admin Core</h1>
+            <p class="text-slate-400 text-xs mt-1">Masuk ke pusat kontrol ekosistem</p>
+        </div>
+
+        <form id="adminLoginForm" class="space-y-5">
+            <div>
+                <label class="text-slate-400 text-[11px] font-bold ml-1">Email Admin</label>
+                <input type="email" id="email" required class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-5 text-white text-sm focus:outline-none focus:border-emerald-500/50 transition-all" placeholder="admin@gabah.com">
+            </div>
+            <div>
+                <label class="text-slate-400 text-[11px] font-bold ml-1">Kata Sandi</label>
+                <input type="password" id="password" required class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-5 text-white text-sm focus:outline-none focus:border-emerald-500/50 transition-all" placeholder="••••••••">
+            </div>
+            <button type="submit" id="btnSubmit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-2xl transition-all flex items-center justify-center gap-2">
+                Buka Dashboard <i class="fas fa-arrow-right text-xs"></i>
+            </button>
+        </form>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB6HETQvxf6jZ4d48BxvOFtFU0fuTXZN_I",
+            authDomain: "gabah-cc201.firebaseapp.com",
+            projectId: "gabah-cc201",
+            storageBucket: "gabah-cc201.firebasestorage.app",
+            messagingSenderId: "497754423789",
+            appId: "1:497754423789:web:64b227e15b83f6d02867e4"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btnSubmit');
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+
+            btn.disabled = true;
+            btn.innerHTML = "Mengecek Kredensial...";
+
+            try {
+                const q = query(collection(db, "admins"), where("email", "==", email), where("password", "==", pass));
+                const snap = await getDocs(q);
+
+                if (!snap.empty) {
+                    localStorage.setItem('adminEmail', email);
+                    localStorage.setItem('adminPass', pass);
+                    window.location.href = "../admin/admin.html";
+                } else {
+                    Swal.fire({ icon: 'error', title: 'Gagal', text: 'Email atau Password salah!', background: '#0f172a', color: '#fff' });
+                    btn.disabled = false;
+                    btn.innerHTML = "Buka Dashboard";
+                }
+            } catch (err) {
+                console.error(err);
+                btn.disabled = false;
+                btn.innerHTML = "Error Koneksi";
+            }
+        });
+    </script>
+</body>
+</html>

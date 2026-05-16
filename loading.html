@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Entertainment World</title>
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #0d0d0d;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Animasi Berkedip */
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes gold-glow {
+            0% { text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700; }
+            100% { text-shadow: 0 0 20px #fff, 0 0 40px #ffcc00; }
+        }
+
+        /* Header & Running Text */
+        header {
+            background: linear-gradient(180deg, #ff0000, #8b0000);
+            padding: 15px;
+            text-align: center;
+            border-bottom: 3px solid #ffd700;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .marquee-container {
+            background: #222;
+            color: #ffd700;
+            padding: 5px 0;
+            font-weight: bold;
+            border-bottom: 2px solid #ffd700;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: radial-gradient(circle, #333 0%, #000 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #ffd700;
+            text-transform: uppercase;
+            animation: gold-glow 1s infinite alternate;
+            margin-bottom: 10px;
+        }
+
+        .promo-banner {
+            background: linear-gradient(45deg, #ff0000, #ffcc00);
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            box-shadow: 0 0 20px #ff0000;
+            margin-top: 20px;
+        }
+
+        /* Games Grid */
+        .game-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background: #1a1a1a;
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            position: relative;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        .game-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #ffd700;
+        }
+
+        .game-img {
+            width: 100%;
+            height: 150px;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            background-image: linear-gradient(45deg, #444, #222);
+        }
+
+        .btn-play {
+            background: linear-gradient(to bottom, #ffd700, #ff8c00);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Jackpot Section */
+        .jackpot-box {
+            background: #000;
+            border: 4px double #ffd700;
+            margin: 30px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .jackpot-amount {
+            font-size: 2.5rem;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        /* Footer Sticky Menu */
+        .footer-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #111;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 2px solid #ff0000;
+        }
+
+        .nav-item {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .nav-item i {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 3px;
+        }
+
+        /* Responsive Adjustment */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .promo-banner { font-size: 1rem; }
+            .game-container { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2 style="color: #fff; text-shadow: 2px 2px #000;">🌟 GODEK MANIA 🌟</h2>
+    </header>
+
+    <div class="marquee-container">
+        <marquee scrollamount="5">
+            SELAMAT DATANG DI DUNIA HIBURAN TERBESAR - JACKPOT DARI GODEK HARI INI TEMBUS RP 500.000.000 - PROMO NEW MEMBER 100% - DEPOSIT PULSA TANPA POTONGAN!
+        </marquee>
+    </div>
+
+    <section class="hero">
+        <h1>JACKPOT TERBESAR</h1>
+        <div class="promo-banner">
+            🔥 BONUS HARIAN MELIMPAH 🔥
+        </div>
+        
+        <div class="jackpot-box">
+            <p style="color: #ffd700; font-weight: bold;">TOTAL GRAND PRIZE:</p>
+            <div class="jackpot-amount" id="jackpot">IDR 888,231,450</div>
+        </div>
+    </section>
+
+    <div class="game-container">
+        <div class="game-card">
+            <div class="game-img" style="color: #ff0000;">HOT SLOT</div>
+            <p style="margin-top:5px">Sweet Bonanza</p>
+            <button class="btn-play">Mainkan</button>
+        </div>
+        <div class="game-card">
+            <div class="game-img" style="color: #ffd700;">BIG WIN</div>
+            <p style="margin-top:5px">Gates of Olympus</p>
+            <button class="btn-play">Mainkan</button>
+        </div>
+        <div class="game-card">
+            <div class="game-img" style="color: #00ff00;">CASINO</div>
+            <p style="margin-top:5px">Roulette Live</p>
+            <button class="btn-play">Mainkan</button>
+        </div>
+        <div class="game-card">
+            <div class="game-img" style="color: #008cff;">SPORTS</div>
+            <p style="margin-top:5px">Sepak Bola</p>
+            <button class="btn-play">Mainkan</button>
+        </div>
+    </div>
+
+    <div style="height: 80px;"></div> <nav class="footer-nav">
+        <a href="#" class="nav-item">🏠<br>Home</a>
+        <a href="#" class="nav-item">💰<br>Deposit</a>
+        <a href="#" class="nav-item" style="color: #ffd700;">🎁<br>Promo</a>
+        <a href="#" class="nav-item">💬<br>Live Chat</a>
+    </nav>
+
+    <script>
+        // Animasi angka jackpot bergerak
+        let amount = 888231450;
+        const jackpotElement = document.getElementById('jackpot');
+
+        setInterval(() => {
+            amount += Math.floor(Math.random() * 500);
+            jackpotElement.innerText = "IDR " + amount.toLocaleString('id-ID');
+        }, 100);
+    </script>
+</body>
+</html>

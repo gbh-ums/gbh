@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
+/* --- DEFINISI TEMA (Updated) --- */
+.theme-light {
+    --bg-color: #f0fdf4; /* Emerald 50 */
+    --text-main: #0f172a; /* Slate 900 */
+    --text-sub: #475569; /* Slate 600 */
+    --nav-bg: rgba(255, 255, 255, 0.7);
+    --border-color: rgba(0, 0, 0, 0.03);
+    --overlay-opacity: 0.2; /* Menerangkan background sawah */
+    --badge-bg: rgba(16, 185, 129, 0.1);
+    --badge-text: #059669; /* Emerald 600 */
+    --badge-border: rgba(5, 150, 105, 0.1);
+    --btn-sec-bg: rgba(255, 255, 255, 0.6);
+    --icon-color: #10b981; /* Emerald 500 (Warna Ikon Dekorasi) */
+}
+
+.theme-dark {
+    --bg-color: #020617; /* Slate 950 */
+    --text-main: #ffffff;
+    --text-sub: #94a3b8; /* Slate 400 */
+    --nav-bg: rgba(2, 6, 23, 0.5);
+    --border-color: rgba(255, 255, 255, 0.05);
+    --overlay-opacity: 0.85; /* Menggelapkan background sawah */
+    --badge-bg: rgba(16, 185, 129, 0.05);
+    --badge-text: #34d399; /* Emerald 400 */
+    --badge-border: rgba(5, 150, 105, 0.05);
+    --btn-sec-bg: rgba(255, 255, 255, 0.05);
+    --icon-color: #34d399; /* Emerald 400 (Warna Ikon Dekorasi) */
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    /* Transisi tema dibuat lambat agar ikon dekorasi tidak lompat warnanya */
+    transition: background-color 1s ease, color 1s ease, border-color 1s ease; 
+}
+
+/* Background Animasi Ping-Pong */
+.moving-bg {
+    background-image: url('tes.jpg');
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    animation: movePingPong 70s ease-in-out infinite alternate;
+}
+
+@keyframes movePingPong {
+    from { background-position: 0% 0%; }
+    to { background-position: 100% 0%; }
+}
+
+/* Overlays */
+.theme-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color);
+    opacity: var(--overlay-opacity);
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 1s ease, background 1s ease;
+}
+
+/* Elements Styling */
+.glass-nav {
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px);
+    border-color: var(--border-color);
+    transition: background 1s ease, border-color 1s ease;
+}
+
+.logo-text, .main-title { color: var(--text-main); }
+.sub-text { color: var(--text-sub); }
+
+.badge {
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    border-color: var(--badge-border);
+    transition: background 1s ease, color 1s ease, border-color 1s ease;
+}
+
+.secondary-btn {
+    background: var(--btn-sec-bg);
+    color: var(--text-main);
+    border-color: var(--border-color);
+    backdrop-filter: blur(10px);
+    transition: background 1s ease, border-color 1s ease, color 1s ease;
+}
+
+/* --- ANIMASI DEKORASI (Updated) --- */
+/* Ikon melayang naik turun */
+.floating { 
+    animation: float 4s ease-in-out infinite; 
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Ikon berputar perlahan searah jarum jam */
+.rotating {
+    animation: rotate 60s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Ikon hiasan menggunakan variabel warna ikon agar menyesuaikan tema */
+main .absolute i {
+    color: var(--icon-color);
+    transition: color 1s ease;
+}
+
+/* Grain Effect Tetap Sama */
+.grain-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.03; pointer-events: none; z-index: 5;
+}
+
+::-webkit-scrollbar { width: 0px; }
+
+
+/* Efek kartu edukasi */
+.edu-card {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.edu-card:hover {
+    transform: translateY(-12px);
+    border-color: #10b981; /* Emerald 500 */
+    box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.15);
+}
+
+/* Memperhalus transisi ikon di dalam kartu */
+.edu-card i {
+    transition: all 0.4s ease;
+}
+
+
+
+/* Kondisi awal: Transparan dan sedikit bergeser ke bawah */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+/* Kondisi saat elemen masuk ke layar */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}

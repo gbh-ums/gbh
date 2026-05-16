@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - G.A.B.A.H 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script> <meta name="referrer" content="no-referrer">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-red-dark: #450a0a;
+            --bg-red-mid: #7f1d1d;
+            --bg-red-bright: #dc2626;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* Background Merah Bergerak */
+        .moving-bg {
+            min-height: screen;
+            background: linear-gradient(45deg, var(--bg-red-dark), var(--bg-red-mid), var(--bg-red-bright));
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(20, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animasi Ikon Melayang */
+        .rocket-float {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Overlay Grainy (Cinematic) */
+        .grain-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.04;
+            z-index: 2;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="moving-bg min-h-screen">
+
+    <div class="grain-overlay"></div>
+
+    <div class="relative z-10 w-full max-w-2xl text-center px-6">
+        <div class="mb-8 inline-block">
+            <div class="w-24 h-24 bg-red-600/30 rounded-[2rem] flex items-center justify-center border border-white/20 backdrop-blur-xl shadow-[0_0_30px_rgba(220,38,38,0.3)] rocket-float">
+                <i class="fas fa-tools text-4xl text-white"></i>
+            </div>
+        </div>
+
+        <div class="glass-card p-10 md:p-14 rounded-[3rem] shadow-2xl">
+            <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase mb-4">
+                Segera <span class="text-red-500">Hadir</span>
+            </h1>
+            <p class="text-red-100/70 text-sm md:text-base font-medium max-w-md mx-auto mb-10 leading-relaxed">
+                Fitur ini sedang dalam tahap pengembangan intensif untuk memberikan otomasi agrikultur terbaik di ekosistem G.A.B.A.H.
+            </p>
+
+            <div class="relative w-full bg-black/30 rounded-full h-4 mb-10 border border-white/5 p-1">
+                <div class="bg-gradient-to-r from-red-800 via-red-600 to-orange-500 h-full rounded-full transition-all duration-1000 shadow-[0_0_20px_rgba(239,68,68,0.4)]" 
+                     style="width: 75%">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 mb-10">
+                <div class="p-5 rounded-3xl bg-white/5 border border-white/10">
+                    <div class="text-3xl font-black text-white">79999995%</div>
+                    <div class="text-[10px] uppercase tracking-[0.2em] font-black text-red-400">Development</div>
+                </div>
+                <div class="p-5 rounded-3xl bg-white/5 border border-white/10">
+                    <div class="text-3xl font-black text-white">2030</div>
+                    <div class="text-[10px] uppercase tracking-[0.2em] font-black text-red-400">Target Indonesia Emas</div>
+                </div>
+            </div>
+
+            <button onclick="history.back()" 
+                    class="group relative bg-red-600 hover:bg-red-700 text-white font-black py-5 px-12 rounded-2xl transition-all shadow-xl shadow-red-950/40 flex items-center justify-center mx-auto uppercase tracking-widest text-[10px] active:scale-95">
+          
+                ya
+            </button>
+        </div>
+
+        <p class="mt-10 text-[10px] text-white/30 font-bold uppercase tracking-[0.5em]">
+            &copy; 2026 Karya FA • G.A.B.A.H Automation Hub
+        </p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>G.A.B.A.H - Admin Aktivasi</title>
+    <script src="https://cdn.tailwindcss.com"></script> <meta name="referrer" content="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-slate-900 text-white p-6">
+    <div class="max-w-5xl mx-auto">
+        <header class="mb-8">
+            <h1 class="text-2xl font-black text-emerald-400">ADMIN CONTROL</h1>
+            <p class="text-slate-400 text-sm">Verifikasi & Aktivasi Akun Mitra</p>
+        </header>
+
+        <div class="bg-slate-800 rounded-3xl border border-slate-700 overflow-hidden shadow-xl">
+            <table class="w-full text-left">
+                <thead class="bg-slate-700/50 text-xs uppercase text-slate-400">
+                    <tr>
+                        <th class="p-4">Nama / Email</th>
+                        <th class="p-4">Peran</th>
+                        <th class="p-4">Status</th>
+                        <th class="p-4">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="userList"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB6HETQvxf6jZ4d48BxvOFtFU0fuTXZN_I",
+            authDomain: "gabah-cc201.firebaseapp.com",
+            projectId: "gabah-cc201",
+            storageBucket: "gabah-cc201.firebasestorage.app",
+            messagingSenderId: "497754423789",
+            appId: "1:497754423789:web:64b227e15b83f6d02867e4"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        onSnapshot(collection(db, "users"), (snapshot) => {
+            const list = document.getElementById('userList');
+            list.innerHTML = '';
+            snapshot.forEach((snap) => {
+                const u = snap.data();
+                const row = `
+                    <tr class="border-b border-slate-700/50 text-sm">
+                        <td class="p-4"><b>${u.nama}</b><br><span class="text-xs opacity-50">${u.email}</span></td>
+                        <td class="p-4 uppercase text-[10px] font-bold">${u.peran}</td>
+                        <td class="p-4">
+                            <span class="px-2 py-1 rounded text-[10px] ${u.status === 'aktif' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-amber-500/20 text-amber-400'}">
+                                ${u.status.toUpperCase()}
+                            </span>
+                        </td>
+                        <td class="p-4 flex gap-2">
+                            ${u.status === 'pending' ? 
+                                `<button onclick="updateUser('${snap.id}', 'aktif')" class="bg-emerald-600 p-2 rounded text-xs">Aktifkan</button>` : 
+                                `<button onclick="updateUser('${snap.id}', 'pending')" class="bg-slate-700 p-2 rounded text-xs text-slate-300">Suspend</button>`
+                            }
+                            <button onclick="hapusUser('${snap.id}')" class="bg-red-900/30 text-red-400 p-2 rounded text-xs"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+                list.innerHTML += row;
+            });
+        });
+
+        window.updateUser = async (id, status) => {
+            await updateDoc(doc(db, "users", id), { status: status });
+        };
+        window.hapusUser = async (id) => {
+            if(confirm("Hapus mitra ini?")) await deleteDoc(doc(db, "users", id));
+        };
+    </script>
+</body>
+</html>

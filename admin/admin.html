@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - G.A.B.A.H</title>
+    <script src="https://cdn.tailwindcss.com"></script> <meta name="referrer" content="no-referrer">
+    <meta name="referrer" content="no-referrer">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="moving-bg min-h-screen pb-20 theme-light">
+
+    <div id="auth-overlay" class="fixed inset-0 z-[999] bg-slate-900 flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-12 h-12 border-4 border-emerald-500/20 border-t-emerald-500 rounded-full animate-spin mb-4 mx-auto"></div>
+            <p class="text-white font-bold text-xs tracking-wider">Memverifikasi akses admin...</p>
+        </div>
+    </div>
+
+    <nav class="glass-nav sticky top-0 z-[100] border-b border-emerald-500/10 backdrop-blur-xl mb-8">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <h1 class="text-xl font-extrabold text-emerald-500 tracking-tight flex items-center">
+                    <i class="fas fa-shield-alt mr-3"></i> G.A.B.A.H Admin
+                </h1>
+                <div id="admin-profile" class="hidden md:flex items-center gap-3 pl-4 border-l border-emerald-500/20">
+                    <div class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-500">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <span id="current-admin-name" class="text-xs font-bold text-slate-600 dark:text-slate-300">Memuat...</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center transition hover:scale-110">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+                <button onclick="logout()" class="text-xs font-bold bg-red-500 text-white px-5 py-2 rounded-xl transition hover:bg-red-600">Keluar</button>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container mx-auto px-6 relative z-10">
+        <div id="stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10"></div>
+<!-- Tambahkan di dalam div #stats -->
+<div class="glass-card p-6 rounded-[1.5rem] border border-emerald-500/10 text-center">
+    <div class="text-[10px] font-bold text-blue-500 uppercase mb-1">Total Transaksi</div>
+    <!-- Pastikan id="stat-transaksi" ada di sini -->
+    <div id="stat-transaksi" class="text-2xl font-black text-slate-800 dark:text-white">0</div>
+</div>
+
+<br>
+        <div class="glass-card p-8 rounded-[2rem] border border-emerald-500/10 mb-10 shadow-2xl">
+            <h2 class="text-lg font-bold text-slate-800 dark:text-white mb-6 flex items-center gWap-2">
+                <i class="fas fa-image text-emerald-500"></i> Unggah Iklan Baru
+            </h2>
+
+
+            <div class="grid md:grid-cols-2 gap-6 items-end">
+                <div class="space-y-2">
+                    <label class="text-[11px] font-bold text-slate-400 ml-1">Pilih File Iklan</label>
+                    <input type="file" id="ad-file" accept="image/*" class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-xs text-slate-400 focus:outline-none focus:border-emerald-500/50">
+                </div>
+                <button onclick="uploadToImgBB()" id="btn-upload-ad" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 px-8 rounded-xl transition-all flex items-center justify-center gap-2">
+                    <i class="fas fa-paper-plane"></i> Publikasikan Iklan
+                </button>
+            </div>
+
+
+            <div id="ad-preview" class="mt-6 hidden">
+                <img id="img-preview" class="h-40 rounded-2xl border-2 border-emerald-500/20 shadow-lg object-cover">
+            </div>
+        </div>
+
+        <div id="ads-management-container" class="mb-10 hidden">
+            <div class="glass-card rounded-[2rem] overflow-hidden border border-emerald-500/10 shadow-xl">
+                <div class="px-8 py-5 bg-emerald-500/5 border-b border-emerald-500/10 flex justify-between items-center">
+                    <h2 class="font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                        <i class="fas fa-tasks text-emerald-500"></i> Manajemen Iklan Aktif
+                    </h2>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="text-[10px] uppercase tracking-widest text-slate-400 border-b border-emerald-500/5">
+                                <th class="px-8 py-4">Preview</th>
+                                <th class="px-8 py-4">Status</th>
+                                <th class="px-8 py-4 text-right">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ads-table-body" class="divide-y divide-emerald-500/5">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="loader" class="flex flex-col items-center justify-center py-20">
+            <div class="w-12 h-12 border-4 border-emerald-500/20 border-t-emerald-500 rounded-full animate-spin mb-4"></div>
+            <p class="text-emerald-500 font-bold text-xs animate-pulse">Menghubungkan ke cloud...</p>
+        </div>
+
+        <div id="tables-container" class="space-y-12 hidden"></div>
+    </div>
+
+
+<!-- Modal Inventaris User -->
+<div id="modal-inventory" class="fixed inset-0 z-[1000] hidden flex items-center justify-center p-4 backdrop-blur-md bg-slate-900/60">
+    <div class="glass-card w-full max-w-2xl rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/20 animate-in fade-in zoom-in duration-300">
+        <div class="px-8 py-6 bg-emerald-500/10 border-b border-emerald-500/10 flex justify-between items-center">
+            <div>
+                <h3 id="inv-modal-title" class="text-xl font-black text-slate-800 dark:text-white">Inventaris User</h3>
+                <p id="inv-modal-subtitle" class="text-[10px] text-emerald-500 font-bold uppercase tracking-widest">Memuat data...</p>
+            </div>
+            <button onclick="closeInventoryModal()" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-slate-500 hover:bg-red-500 hover:text-white transition-all">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="inv-modal-content" class="p-8 max-h-[60vh] overflow-y-auto">
+            <!-- Konten inventaris akan muncul di sini -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        // Tambahkan orderBy dan limit di import jika ingin mengurutkan iklan nantinya
+        import { getFirestore, collection, onSnapshot, doc, updateDoc, deleteDoc, query, where, getDocs, addDoc, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyB6HETQvxf6jZ4d48BxvOFtFU0fuTXZN_I",
+            authDomain: "gabah-cc201.firebaseapp.com",
+            projectId: "gabah-cc201",
+            storageBucket: "gabah-cc201.firebasestorage.app",
+            messagingSenderId: "497754423789",
+            appId: "1:497754423789:web:64b227e15b83f6d02867e4"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        window.gabahDB = getFirestore(app);
+        // Tambahkan orderBy ke window.fb_ops
+        window.fb_ops = { collection, onSnapshot, doc, updateDoc, deleteDoc, query, where, getDocs, addDoc, orderBy };
+
+
+    </script>
+    
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("vNBjkPwutHXRMzjNJ"); // Gunakan Public Key kamu
+   })();
+</script>
+<script src="admin.js"></script>
+
+
+
+
+</body>
+</html>
